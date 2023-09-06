@@ -1,0 +1,20 @@
+.Drawer :global(.MuiDrawer-paperAnchorLeft) { width: 300px; }
+
+.ListItem {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+}
+
+.ListItemIcon { min-width: 2rem; }
+
+.Icon {
+    width: 18px;
+    color: rgb(0, 127, 255);
+}
+
+.SubListItemButton {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3rem;
+}

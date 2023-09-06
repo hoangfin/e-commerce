@@ -15,10 +15,5 @@ export default defineConfig({
         alias: {
             "@src": path.resolve(__dirname, "src")
         }
-    },
-    css: {
-        modules: {
-            generateScopedName: "[local]__[hash:base64:5]"
-        }
     }
 });
