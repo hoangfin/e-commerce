@@ -1,23 +1,20 @@
 services:
-  mongo:
-    container_name: mongo
+  mongodb:
+    container_name: mongodb
     image: mongo:latest
     ports:
       - 8081:8081
     volumes:
-      - e-commerce:/data/db
-  # typesense:
-  #   container_name: typesense
-  #   image: typesense/typesense:0.24.1
-  #   ports:
-  #     - 8108:8108
-  #   environment:
-  #     - TYPESENSE_DATA_DIR=/data
-  #     - TYPESENSE_API_KEY=xyz
-  #   volumes:
-  #     - amazon-clone_typesense-data:/data
+      - mongodb:/data/db
+  typesense:
+    container_name: typesense
+    image: typesense/typesense:0.25.1
+    ports:
+      - 8108:8108
+    volumes:
+      - typesense:/data
+    command: "--data-dir=/data --api-key=xyz --enable-cors"
 
 volumes:
-  e-commerce:
-  amazon-clone_typesense-data:
-    external: true
+  mongodb:
+  typesense:
