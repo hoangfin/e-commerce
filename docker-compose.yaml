@@ -13,7 +13,7 @@ services:
       - 8108:8108
     volumes:
       - typesense:/data
-    command: "--data-dir=/data --api-key=xyz --enable-cors"
+    command: "--data-dir=/data --api-key=xyz --enable-search-analytics=true --analytics-flush-interval=60 --enable-cors"
 
 volumes:
   mongodb:
