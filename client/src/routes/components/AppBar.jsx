@@ -14,16 +14,17 @@ import {
     MenuItem, Stack,
     SvgIcon,
     Autocomplete,
-    TextField
+    TextField,
+    InputAdornment
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // import { useSignOut, useUser } from "@src/api/authentication";
 import { Logo, PersonOutline } from "@src/icons";
 // import { SearchDrawer } from "./SearchDrawer";
-// import { useCart } from "@src/stores";
+import { quantity } from "@src/stores/cart";
 
 /** @type {React.ForwardRefRenderFunction<?, import("@mui/material").AppBarProps>} */
-export const AppBar = forwardRef((props, ref) => {
+export const AppBar = forwardRef(function AppBar(props, ref) {
     // const [anchorEL, setAnchorEL] = useState(null);
     // const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
     // const user = useUser();
@@ -43,7 +44,7 @@ export const AppBar = forwardRef((props, ref) => {
     return (
         <MuiAppBar {...props} ref={ref}>
             <Container>
-                <Stack direction="row" alignItems="center" height="100%" paddingY="12px">
+                <Stack direction="row" alignItems="center" columnGap={2}>
                     {/* <Stack direction="row" alignItems="center"> */}
                         {/* <IconButton>
                             <SvgIcon component={HiOutlineMenu} inheritViewBox />
@@ -56,8 +57,25 @@ export const AppBar = forwardRef((props, ref) => {
                             freeSolo
                             fullWidth
                             getOptionLabel={option => option}
-                            renderInput={params => <TextField {...params} label="Search" />}
+                            renderInput={params =>
+                                <TextField
+                                    {...params}
+                                    label="Search ..."
+                                    size="small"
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        startAdornment: <InputAdornment position="start">
+                                                            <SvgIcon component={IoIosSearch} inheritViewBox />
+                                                        </InputAdornment>
+                                    }}
+                                />
+                            }
                         />
+                        <IconButton component={RouterLink} to="/cart">
+                            <Badge badgeContent={} color="warning">
+                                <SvgIcon component={SlHandbag} inheritViewBox />
+                            </Badge>
+                        </IconButton>
                         {/* <Stack direction="row" alignItems="center" marginLeft="auto">
                             <IconButton onClick={() => setIsSearchDrawerOpen(true)}>
                                 <SvgIcon component={IoIosSearch} inheritViewBox />
@@ -72,14 +90,7 @@ export const AppBar = forwardRef((props, ref) => {
                                 <PersonOutline />
                             </IconButton>
 
-                            <IconButton component={RouterLink} to="/cart">
-                                <Badge
-                                    badgeContent={cart.reduce((acc, cartItem) => (acc + cartItem.quantity), 0)}
-                                    color="warning"
-                                >
-                                    <SvgIcon component={SlHandbag} inheritViewBox />
-                                </Badge>
-                            </IconButton>
+
                         </Stack> */}
                     {/* </Stack> */}
                     {/* <SearchDrawer /> */}
@@ -126,5 +137,3 @@ export const AppBar = forwardRef((props, ref) => {
         </MuiAppBar>
     );
 });
-
-AppBar.displayName = "AppBar";
