@@ -1,11 +1,10 @@
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
 
-const cart = signal([]);
+const cart = signal(JSON.parse(localStorage.getItem("cart")) || []);
 
-export const getQuantity = () => cart.value.reduce(
-	(acc, item) => {},
-	0
-);
+export const quantity = computed(() => cart.value.reduce(
+	(acc, item) => (acc + item.quantity), 0
+));
 
 export const addProduct = () => {
 
