@@ -9,6 +9,7 @@ export const Root = () =>
             color="transparent"
             elevation={0}
             sx={theme => ({
+                paddingY: 1,
                 borderBottom: `1px solid ${theme.palette.divider}`
             })}
         />
