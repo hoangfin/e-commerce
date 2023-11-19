@@ -1,7 +1,7 @@
 import { Container, Typography } from "@mui/material";
 // import { useCategories } from "@src/api";
 
-export const Home = () => {
+export default function Home() {
     // const { data } = useCategories();
 
     return (
@@ -9,10 +9,8 @@ export const Home = () => {
            {/*  <Typography component="h2">
                 Explore popular categories
             </Typography> */}
-            
+
 
         </Container>
     )
 };
-
-Home.displayName = "Home";

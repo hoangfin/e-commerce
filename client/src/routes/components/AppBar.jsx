@@ -1,8 +1,9 @@
 import { forwardRef, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { HiOutlineMenu } from "react-icons/hi";
-import { IoIosSearch } from "react-icons/io";
+import { RiSearchLine } from "react-icons/ri";
 import { SlHandbag } from "react-icons/sl";
+import { Logo, PersonOutline } from "@src/icons";
 import {
     AppBar as MuiAppBar,
     Avatar,
@@ -13,18 +14,20 @@ import {
     Menu,
     MenuItem, Stack,
     SvgIcon,
+    Button,
+    Dialog,
     Autocomplete,
+    InputAdornment,
     TextField,
-    InputAdornment
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// import { useSignOut, useUser } from "@src/api/authentication";
-import { Logo, PersonOutline } from "@src/icons";
+// import { useUser } from "@src/api/authentication";
 // import { SearchDrawer } from "./SearchDrawer";
 import { quantity } from "@src/stores/cart";
 
 /** @type {React.ForwardRefRenderFunction<?, import("@mui/material").AppBarProps>} */
 export const AppBar = forwardRef(function AppBar(props, ref) {
+    const [isOpen, setIsOpen] = useState(false);
     // const [anchorEL, setAnchorEL] = useState(null);
     // const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
     // const user = useUser();
@@ -40,6 +43,7 @@ export const AppBar = forwardRef(function AppBar(props, ref) {
     //         onSuccess: () => navigate("/")
     //     });
     // };
+    console.log("Render AppBar");
 
     return (
         <MuiAppBar {...props} ref={ref}>
@@ -52,27 +56,20 @@ export const AppBar = forwardRef(function AppBar(props, ref) {
                         <Link component={RouterLink} to="/">
                             <Logo sx={{ width: "auto", height: "36px" }} />
                         </Link>
-                        <Autocomplete
-                            options={["Hello", "Ok to be true", "Swallowed Star"]}
-                            freeSolo
-                            fullWidth
-                            getOptionLabel={option => option}
-                            renderInput={params =>
-                                <TextField
-                                    {...params}
-                                    label="Search ..."
-                                    size="small"
-                                    InputProps={{
-                                        ...params.InputProps,
-                                        startAdornment: <InputAdornment position="start">
-                                                            <SvgIcon component={IoIosSearch} inheritViewBox />
-                                                        </InputAdornment>
-                                    }}
-                                />
-                            }
-                        />
+
+                        <IconButton onClick={() => setIsOpen(value => !value)}>
+                            <SvgIcon component={RiSearchLine} inheritViewBox />
+                        </IconButton>
+                        <IconButton
+                            // {...(user.data
+                            //     ?   { onClick: showUserMenu, "aria-haspopup": true }
+                            //     :   { component: RouterLink, to: "/signin", disableRipple: true }
+                            // )}
+                        >
+                            <PersonOutline />
+                        </IconButton>
                         <IconButton component={RouterLink} to="/cart">
-                            <Badge badgeContent={} color="warning">
+                            <Badge badgeContent={quantity} color="warning" showZero>
                                 <SvgIcon component={SlHandbag} inheritViewBox />
                             </Badge>
                         </IconButton>
@@ -134,6 +131,28 @@ export const AppBar = forwardRef(function AppBar(props, ref) {
                     </MenuItem>
                 </Menu>
             } */}
+            <Dialog fullScreen open={isOpen}>
+                <Autocomplete
+                    options={["Hello", "Ok to be true", "Swallowed Star"]}
+                    freeSolo
+                    fullWidth
+                    getOptionLabel={option => option}
+                    renderInput={params =>
+                        <TextField
+                            {...params}
+                            size="small"
+                            placeholder="Search..."
+                            InputProps={{
+                                ...params.InputProps,
+                                startAdornment: <InputAdornment position="start">
+                                                    <SvgIcon component={RiSearchLine} inheritViewBox />
+                                                </InputAdornment>
+                            }}
+                        />
+                    }
+                />
+                <Button onClick={() => setIsOpen(false)}>Escape</Button>
+            </Dialog>
         </MuiAppBar>
     );
 });

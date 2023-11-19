@@ -4,7 +4,8 @@ import { ThemeProvider } from "@mui/material";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Checkout, OrderHistory, Payment, Product, Search } from "pages";
-import Root, { Home } from "@src/routes";
+import Root from "@src/routes/Root";
+import Home from "@src/routes/Root/Home";
 import { mirageTheme } from "@src/themes";
 // import "stores";
 
@@ -21,11 +22,11 @@ const router = createBrowserRouter(
             <Route index element={<Home />} />
             {/* <Route path="product/:id" lazy={() => import("@src/routes/Product")}/> */}
             {/* <Route path="order-history" element={<OrderHistory />} /> */}
-            {/* <Route
+            <Route
                 path="signin"
                 loader={async () => "empty"}
-                lazy={() => import("@src/routes/Signin")}
-            /> */}
+                lazy={() => import("@src/routes/Root/Signin")}
+            />
             {/* <Route path="cart" lazy={() => import("@src/routes/Cart")} /> */}
 
             {/* <Route
