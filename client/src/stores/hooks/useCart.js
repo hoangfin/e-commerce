@@ -25,5 +25,5 @@ export const useCart = create(set => ({
 		}, true);
 	},
 
-	empty: () => set(state => ({ ...state, cart: [] }))
+	setCart: newCart => set(state => ({ ...state, cart: newCart }))
 }));
