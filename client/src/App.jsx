@@ -42,15 +42,7 @@ const router = createBrowserRouter(
     { basename: import.meta.env.BASE_URL }
 );
 
-/* const useThemeMode = create(set => ({
-    mode: theme.palette.mode,
-    setMode: newMode => set({ mode: newMode })
-})); */
-
 export default function App() {
-    /* const themeMode = useThemeMode(state => state.mode);
-    console.log(themeMode); */
-
     return (
         <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={mirageTheme}>
