@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "@mui/material";
+import { mirageTheme } from "@src/themes";
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+// import { Checkout, OrderHistory, Payment, Product, Search } from "pages";
+import Root from "@src/routes/Root";
+import Home from "@src/routes/Root/Home";
+// import "stores";
 
-function App() {
-  const [count, setCount] = useState(0)
+/* const stripePromise = loadStripe(
+    "pk_test_51LBxovAczuSx9NaantjDoChzPMfN9Xz4FsZjpRwmVwnuIDUIVFxi" +
+    "FOMyD066RxmhkGitDNaFZLLSxYLNmMtEzm3b005rgUhRoI"
+); */
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const queryClient = new QueryClient();
 
-export default App
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={<Root />}>
+            <Route index element={<Home />} />
+            {/* <Route path="product/:id" lazy={() => import("@src/routes/Product")}/> */}
+            {/* <Route path="order-history" element={<OrderHistory />} /> */}
+            {/* <Route
+                path="signin"
+                loader={async () => "empty"}
+                lazy={() => import("@src/routes/Root/Signin")}
+            /> */}
+            {/* <Route path="cart" lazy={() => import("@src/routes/Cart")} /> */}
+
+            {/* <Route
+                path="payment"
+                element={
+                    <Elements stripe={stripePromise}>
+                        <Payment />
+                    </Elements>
+                }
+            /> */}
+        </Route>
+    ),
+    { basename: import.meta.env.BASE_URL }
+);
+
+export default function App() {
+    return (
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={mirageTheme}>
+                <RouterProvider router={router} />
+            </ThemeProvider>
+        </QueryClientProvider>
+    );
+};

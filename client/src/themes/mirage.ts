@@ -1,8 +1,8 @@
-import { createTheme, lighten, darken } from "@mui/material";
-import { cyan } from "@mui/material/colors";
+import { createTheme } from "@mui/material";
+// import { cyan } from "@mui/material/colors";
 
-const { palette } = createTheme();
-const { augmentColor } = palette;
+// const { palette } = createTheme();
+// const { augmentColor } = palette;
 
 export const mirageTheme = createTheme({
     typography: {
@@ -26,20 +26,22 @@ export const mirageTheme = createTheme({
         }
     },
     palette: {
-        mode: "light",
-        cu: augmentColor({
-            color: {
-                main: "#D5D9D9",
-                light: lighten("#D5D9D9", 0.2),
-                dark: darken("#D5D9D9", 0.2)
-            }
-        }),
-        overlay: {
-            abc: "rgba(5, 75, 89, 0.03)"
-        },
-        gradient: {
-            
-        }
+		mode: "light"
+        // mode: "light",
+
+        // cu: augmentColor({
+        //     color: {
+        //         main: "#D5D9D9",
+        //         light: lighten("#D5D9D9", 0.2),
+        //         dark: darken("#D5D9D9", 0.2)
+        //     }
+        // }),
+        // overlay: {
+        //     abc: "rgba(5, 75, 89, 0.03)"
+        // },
+        // gradient: {
+
+        // }
     }
 });
 
