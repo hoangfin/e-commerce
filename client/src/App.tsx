@@ -6,7 +6,7 @@ import { mirageTheme } from "@src/themes";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Checkout, OrderHistory, Payment, Product, Search } from "pages";
 import Root from "@src/routes/Root";
-import Home from "@src/routes/Root/Home";
+import Home from "@src/routes/Home";
 // import "stores";
 
 /* const stripePromise = loadStripe(
